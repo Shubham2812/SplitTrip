@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title> Groups </title>
+</head>
+<body>
+<br>
+	<% @groups.each do |group| %>
+		<a href="/groups/show/<%= group.id %>"> <%= group.name %> </a>
+		<%= group.no_of_members %>
+	<% end %>
+	<br>
+	<a href="/groups/create"> Create Group </a>
+</body>
+</html>

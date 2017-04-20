@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title> Chat </title>
+</head>
+<body>
+
+	<div class="chat_box">
+		<div class="chat_window">
+			<% @messages.each do |message| %>
+				<%= render 'message', :message => message %>
+			<% end %>		
+		</div>
+
+		<%= form_tag '/messages/new', remote: true, authenticity_token: true do %>
+			<%= text_field_tag :message, nil, :placeholder => 'Enter Your Message' %> <br>
+			<%= submit_tag :Send %>
+		<% end %>
+	</div>
+</body>
+
+<script>
+	$(function(){
+  		var faye = new Faye.Client('http://localhost:9292/faye');
+  		faye.subscribe("/messages/new", function(data) {
+    		console.log(data);
+			$('.chat_window').append('<div>'+data.user +',' +data.content + '</div>');
+  		});
+
+  // faye.publish('/messages/new', {text: 'Hi there'});
+});
+</script>
+
+
+
+</html>

@@ -1,0 +1,87 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+.participants_container{
+ 	border: 1px solid grey;
+ 	padding: 10px;
+ 	width: 25%;
+}
+
+.participants_container_head{
+ 	display: flex;
+ 	justify-content: space-between;
+ 	padding: 5px;
+}
+
+.member{
+	border: 1px solid black;
+	padding: 5px;
+	display: flex;
+	justify-content: space-between;
+}
+
+.member > img{
+	height: 50px;
+	width: 50px;
+	border-radius: 50%;
+}
+
+.member_left{
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	width: 80%;
+}
+
+.member_left_upper, .member_left_lower{
+	display: flex;
+	justify-content: space-between;
+} 
+
+.member_left_lower > div > a > img{
+	height: 20px;
+	width: 20px;
+}
+
+.member_name{
+	font-size: 20px;
+}
+
+.member_position{
+	font-size: 15px;
+	color: grey;
+}
+
+.chat_box{
+	border: 1px solid black;
+	display: flex;
+	flex-direction: column;
+	height: 500px;
+	width: 500px;
+	padding: 10px;
+}
+
+.chat_window{
+	width: 100%;
+	height: 450px;
+	border: 1px solid grey;
+}
+
+.message{
+	background-color: cyan;
+}
+
+

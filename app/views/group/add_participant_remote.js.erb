@@ -1,0 +1,71 @@
+if('<%= @status %>' == 0)
+	alert("User Not Found!")
+else if('<%= @status %>' == 1)
+	alert("User Already Added")
+else
+{
+	$("#members_list").append("<%= escape_javascript(render 'members2', :member => @member, :@group => @group) %>");
+	console.log("hello")
+	console.log('<%= @group_user.id %>')
+	var members_count = document.getElementById("members_count")
+	var count = parseInt(members_count.innerHTML);
+	count += 1;
+	members_count.innerHTML = count;
+
+				var remove_participant = document.getElementById('remove_<%= @group_user.id %>')
+				if(remove_participant)
+				{	remove_participant.addEventListener("click", function(event){
+						console.log("remove_participant")
+						event.preventDefault();
+						console.log(event)
+						console.log(this)
+						var url = '/groups/participant/remove'
+						var info = {
+							groups_users_id: this.id.slice(7)
+						}
+
+						var current_element = this
+						$.ajax({
+							url: url,
+							method: 'post',
+							data: info,
+							success: function(){
+								var child = current_element.parentElement.parentElement.parentElement.parentElement
+								var parent = child.parentElement
+								parent.removeChild(child)
+							},
+							error: function(){
+								alert("Error")
+							}
+						})
+					})
+				}
+
+				var make_admin_participant = document.getElementById('make_admin_<%= @group_user.id %>')
+				if(make_admin_participant)
+				{	
+					make_admin_participant.addEventListener("click", function(event){
+						event.preventDefault();
+						var elem = this.parentElement.parentElement.previousElementSibling.lastElementChild
+						var url = '/groups/participant/make_admin'
+						var info = {
+							groups_users_id: this.id.slice(11)
+						}
+						
+						var current_element = this
+						$.ajax({
+							url: url,
+							method: 'post',
+							data: info,
+							success: function(){
+								elem.style.color = '#8b8080'
+							    elem.innerHTML = "admin"
+							},
+							error: function(){
+								alert("Error")
+							}
+						})
+					})
+				}
+	console.log("bye")
+}

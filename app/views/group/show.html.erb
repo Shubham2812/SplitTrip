@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title> <%= @group.name %> </title>
+</head>
+<body>
+	<br>
+	<div class="participants_container">
+		<div class="participants_container_head"> <span> Participants </span> <span id="members_count"> <%= @group.no_of_members %> </span> 
+		</div>
+		<div id="members_list"> 
+			<% if @members %>
+				<% @members.each do |member| %>
+					<%= render 'members2', member: member %>
+				<% end %>
+			<% end %>
+		</div>
+	</div>
+
+	<% if position(@group.id, current_user.id) == 'admin' %>
+		<% form_id = 'group_id_' + @group.id.to_s %>
+		<%= form_tag '/groups/participant/add/remote', class: 'add_participant', id: form_id, remote: true, authenticity_token: true  do %>
+			<%= text_field_tag :username %>
+			<%= hidden_field_tag :group_id, @group.id %>
+			<%= submit_tag 'Add Participant' %>	
+		<% end %>
+	<% end %>
+	<p id="result">
+		
+	</p>
+
+	<%= link_to 'Group Chat' , '/chat' %>
+
+	<div class="transactions">
+		<h2> Transactions </h2>
+		<span style="margin-left: 250px;"> Debit </span>
+		<span style="margin-left: 50px;"> Credit </span>
+		<%= form_tag '/transactions' do %>
+			<ol>		
+			<% @members.each do |member| %>
+				<%= render 'members1', member: member %>
+			<% end %>
+			</ol>
+			<%= submit_tag :Evaluate %>
+		<% end %>
+	</div>
+</body>
+</html>

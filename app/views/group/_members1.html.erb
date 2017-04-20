@@ -1,0 +1,21 @@
+
+<% if member.class.column_names.include? 'name' %>
+	<% name_email = member.name %>
+	<% type = "user" %>
+	<% id = member.user_id %>
+<% else %>
+	<% name_email = member.email %>
+	<% type = "person" %> 
+	<% id = member.id %>
+<% end %>
+
+<% if current_user.id != id %>
+	<li>	
+		<span> <%= name_email %> </span> 			
+		<%= hidden_field_tag :group_id, @group.id %>
+		<% debit_field = 'debit' + '_' + type + '_' + member.id.to_s %> 
+		<%= text_field_tag debit_field, 0 %>
+		<% credit_field = 'credit' + '_' + type + "_" + member.id.to_s %> 
+		<%= text_field_tag credit_field, 0 %>
+	</li>
+<% end %>

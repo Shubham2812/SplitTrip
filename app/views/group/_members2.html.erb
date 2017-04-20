@@ -1,0 +1,34 @@
+<div class="member">
+	<img src="<%= member.avatar %>">
+	<div class="member_left">
+
+		<% if member.class.column_names.include? 'name' %>
+			<% name_email = member.name %>
+			<% id = member.user_id %>
+			<% username = member.username %>
+		<% else %>
+			<% name_email = member.email %>
+			<% id = member.id %>
+			<% username = nil %>
+		<% end %>
+
+		<div class="member_left_upper">
+			<span class="member_name"> <b> <%= name_email %> </b> </span> 
+			<% if position(@group.id, id) == 'admin' %>
+				<span class="member_position"> <%= position(@group.id, id) %> </span>
+			<% else %>
+				<span> </span>
+			<% end %>
+		</div>
+		<div class="member_left_lower">
+			<span> <%= username %> </span>
+			<div>
+				<% if position(@group.id, current_user.id) == 'admin' && id != current_user.id %>
+					<% groups_users_id = groups_users_id(@group.id, id) %>
+ 					<a class="remove_participant" id="remove_<%= groups_users_id %>" href="/groups/participant/remove"><img src="/images/remove.png" title="Remove"></a>
+					<a class="make_admin_participant" id="make_admin_<%= groups_users_id %>" href="/groups/participant/make_admin"><img src="/images/admin.png" title="Make Admin"></a>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</div>

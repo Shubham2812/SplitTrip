@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title> Create Group </title>
+</head>
+<body>
+	<%= form_tag '/groups/create/confirm' do %>
+		Name <%= text_field_tag :name %> <br>
+		<%= submit_tag :Create %>
+	<% end %>
+</body>
+</html>
