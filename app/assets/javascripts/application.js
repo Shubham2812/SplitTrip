@@ -14,8 +14,6 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
-//= require faye
-//= require comments
 
 
 function main(){
@@ -152,6 +150,34 @@ function main(){
 			})
 		}
 	}
+
+	$(function(){
+  		var faye = new Faye.Client('http://localhost:9292/faye');
+  		faye.subscribe("/messages/new", function(data) {
+    		console.log(data);
+    		var url = '/abc'
+    		var info = {
+    			user: data.user,
+    			message: data.message
+    		}
+
+    		$.ajax({
+    			url: url,
+    			method: 'post',
+    			data: info,
+    			success: function(){
+
+    			},
+    			error: function(){
+    				alert("Error")
+    			}
+    		})
+
+			// $('.chat_window').append('<div>'+ data.message.content + ',' + data.user.email + '</div>');
+  		});
+
+  // faye.publish('/messages/new', {text: 'Hi there'});
+});
 }
 
 window.addEventListener("load", function(){

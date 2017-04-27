@@ -5,31 +5,45 @@
 </head>
 <body>
 	<br>
-	<div class="participants_container">
-		<div class="participants_container_head"> <span> Participants </span> <span id="members_count"> <%= @group.no_of_members %> </span> 
-		</div>
-		<div id="members_list"> 
-			<% if @members %>
-				<% @members.each do |member| %>
-					<%= render 'members2', member: member %>
+	<div class="chat">
+		<div class="participants_container">
+			<div class="group_name">
+				<span> <%= @group.name %> </span>
+			</div>
+			<div class="participants_container_head"> <span> Participants </span> <span id="members_count"> <%= @group.no_of_members %> </span> 
+			</div>
+			<div id="members_list"> 
+				<% if @members %>
+					<% @members.each do |member| %>
+						<%= render 'members2', member: member %>
+					<% end %>
 				<% end %>
+			</div>
+			<% if position(@group.id, current_user.id) == 'admin' %>
+				<% form_id = 'group_id_' + @group.id.to_s %>
+				<%= form_tag '/groups/participant/add/remote', class: 'add_participant', id: form_id, remote: true, authenticity_token: true  do %>
+					<%= text_field_tag :username %>
+					<%= hidden_field_tag :group_id, @group.id %>
+					<%= submit_tag 'Add Participant' %>	
+				<% end %>
+			<% end %>
+			<p id="result">
+				
+			</p>
+		</div>
+		<div class="chat_box">
+			<div class="chat_window">
+				<% @messages.each do |message| %>
+					<%= render 'message', :message => message, :user => message.user %>
+				<% end %>		
+			</div>
+			<br>
+			<%= form_tag '/messages/new', remote: true, authenticity_token: true do %>
+				<%= text_field_tag :message, nil, :placeholder => 'Enter Your Message' %>
+				<%= submit_tag :Send %>
 			<% end %>
 		</div>
 	</div>
-
-	<% if position(@group.id, current_user.id) == 'admin' %>
-		<% form_id = 'group_id_' + @group.id.to_s %>
-		<%= form_tag '/groups/participant/add/remote', class: 'add_participant', id: form_id, remote: true, authenticity_token: true  do %>
-			<%= text_field_tag :username %>
-			<%= hidden_field_tag :group_id, @group.id %>
-			<%= submit_tag 'Add Participant' %>	
-		<% end %>
-	<% end %>
-	<p id="result">
-		
-	</p>
-
-	<%= link_to 'Group Chat' , '/chat' %>
 
 	<div class="transactions">
 		<h2> Transactions </h2>

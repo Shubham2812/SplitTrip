@@ -25,10 +25,10 @@
   <div style="display: flex; justify-content: space-around;">
     <div style="display: flex; margin: 50px; align-items: center;">
 
-      <img src="<%= @person.avatar %>" style="height: 240px; width: 250px; margin-right: 50px; border: 1px solid grey">  
       <div>
         <% flag = false %>
         <% if @person %>
+          <img src="<%= @person.avatar %>" style="height: 240px; width: 250px; margin-right: 50px; border: 1px solid grey">  
           <% flag = true %>
           <fieldset style="width: 700px;">
             <legend> Personal Details </legend>

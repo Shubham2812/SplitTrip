@@ -22,6 +22,8 @@ Rails.application.routes.draw do
 
   get '/chat' => 'chat#index'
   post '/messages/new' => 'chat#new_message'
+
+  post '/abc' => 'chat#append_message'
   devise_for :users
 
   # The priority is based upon order of creation: first created -> highest priority.

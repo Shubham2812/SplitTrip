@@ -23,6 +23,8 @@ class GroupController < ApplicationController
   def show
   	@group = Group.find(params[:group_id])
   	@members = @group.members
+    @messages = Message.all
+    
   end
 
   # def add_participant

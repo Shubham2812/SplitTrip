@@ -66,22 +66,78 @@
 }
 
 .chat_box{
-	border: 1px solid black;
+	border: 1px solid grey;
+	border-left: 0;
 	display: flex;
 	flex-direction: column;
-	height: 500px;
-	width: 500px;
 	padding: 10px;
+	width: 80%;
 }
 
 .chat_window{
-	width: 100%;
 	height: 450px;
 	border: 1px solid grey;
+	overflow-y: scroll;
+	padding: 10px;
 }
 
-.message{
-	background-color: cyan;
+.message_container{
+	background-color: white;
+	border-radius: 4%;
+	border: 1px solid blue;
+	width: 40%;
+	margin-bottom: 10px;
+	padding: 5px;
 }
 
+.message_time_container{
+	display: flex;
+	justify-content: flex-end;
+}
 
+.message_sender{
+	color: blue;
+	font-size: 15px;
+}
+
+.message_content{
+	color: black;
+	font-size: 18px;
+}
+
+.message_time{
+	color: grey;
+	font-size: 12px;
+}
+
+.message_other{
+	display: flex;
+	justify-content: flex-start;
+
+}
+
+.message_self{
+	display: flex;
+	justify-content: flex-end;
+}
+
+.chat{
+	display: flex;
+}
+
+.group_name{
+	border: 1px solid grey;
+	padding: 10px;
+	background-color: grey;
+}
+
+.group_name > span{
+	font-size: 40px;
+	color: white;
+}
+
+#message{
+	width: 94%;
+}
+
+/*rackup -s thin -E developement faye.ru*/
