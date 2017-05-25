@@ -4,12 +4,13 @@
 	<title> Groups </title>
 </head>
 <body>
-<br>
-	<% @groups.each do |group| %>
-		<a href="/groups/show/<%= group.id %>"> <%= group.name %> </a>
-		<%= group.no_of_members %>
-	<% end %>
-	<br>
-	<a href="/groups/create"> Create Group </a>
+	<div class="create_group_container"> 
+		<a href="/groups/create"> <img src="/images/create.jpg" id="create_group_icon" title="Create Group"> </a> 
+	</div>
+	<div class="groups_container">
+		<% @groups.each do |group| %>
+			<%= render 'group', group: group %>
+		<% end %>
+	</div>
 </body>
 </html>

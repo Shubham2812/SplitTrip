@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title> Result </title>
+</head>
+<body>	
+
+	<% @result.each do |i| %>
+		<%= i[0] + ' owes Rs. ' + i[2].to_s + '/- to ' + i[1] %> <br> 
+	<% end %>
+</body>	
+</html>

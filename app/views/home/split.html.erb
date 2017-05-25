@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title> Insta Split </title>
+</head>
+<body>
+	<% if @status %>
+		<% value = @count %>
+	<% else %>
+		<% value = 0 %>
+	<% end %>
+
+	<%= form_tag '/split', method: :get do %>
+		Enter the total Number of People Involved : <%= number_field_tag :count, value %>
+		<%= submit_tag :Go %>
+	<% end %>
+	<br><br><br>
+
+	<% if @status %>
+		<% i = 0 %>
+		<%= form_tag '/split/confirm' do %>
+			<% @count.times do %>
+				<% name = i.to_s + '_name' %>
+				<% amount = i.to_s + '_amount' %>
+				Name: <%= text_field_tag name, nil, required: :true %>
+				Amount Paid: <%= number_field_tag amount, 0 %> <br> <br>
+				<% i = i+1 %>
+			<% end %>
+			<%= submit_tag :Evaluate %>
+		<% end %>
+	<% end %>
+</body>
+</html>

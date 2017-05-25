@@ -14,6 +14,16 @@
  *= require_self
  */
 
+ *{
+ 	margin: 0;
+ 	padding: 0;
+ }
+
+ body{
+ 	padding: 10px;
+ 	padding-top: 100px;
+ }
+
 .participants_container{
  	border: 1px solid grey;
  	padding: 10px;
@@ -27,10 +37,15 @@
 }
 
 .member{
-	border: 1px solid black;
+	border: 1px solid grey;
+	border-bottom: 0px;
 	padding: 5px;
 	display: flex;
 	justify-content: space-between;
+}
+
+.members_list{
+	border-bottom: 1px solid grey;
 }
 
 .member > img{
@@ -57,7 +72,7 @@
 }
 
 .member_name{
-	font-size: 20px;
+	font-size: 19px;
 }
 
 .member_position{
@@ -138,6 +153,201 @@
 
 #message{
 	width: 94%;
+}
+
+.header{
+	position: fixed;
+	top: 10px;
+	left: 0;
+	height: 60px;
+	width: 97.5%;
+	padding: 5px;
+	border: 1px solid orange;
+	background-color: white;
+	margin-left: 10px;
+	margin-right: 10px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.header > img{
+	height: 55px;
+	width: 15%;
+}
+
+.header_user{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+.header_user > img{
+	height: 55px;
+	width: 55px;
+	border-radius: 50%;
+	margin-left: 10px;
+}
+
+#signup, #login{
+	text-decoration: none;
+	border: 1px solid grey;
+	padding: 5px;
+	background-color: green;
+	color: white;
+	border-radius: 3%;
+	margin-left: 10px;
+}
+
+.navigation {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 200px;
+    background-color: #f1f1f1;
+}
+
+.navigation > li a {
+    display: block;
+    color: #000;
+    padding: 8px 16px;
+    text-decoration: none;
+}
+
+/*.navigation > li a.active {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.navigation > li a:hover:not(.active) {
+    background-color: #555;
+    color: white;
+}*/
+
+.navigation > li a:hover{
+    background-color: #555;
+    color: white;
+}
+
+.container{
+	display: flex;
+	justify-content: space-between;
+}
+
+.main{	
+	width: 83%;
+}
+
+.profile_container{
+	display: flex; 
+	justify-content: space-around;
+}
+
+.profile_container_image{
+	width: 30%;
+}
+
+.profile_container_content{
+	width: 75%;
+}
+
+.profile_container_image > img{
+	height: 250px;	
+	width: 250px; 
+	border: 1px solid grey
+	border-radius: 5%;
+}
+
+.profile_container > div{
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.profile_container > div > fieldset{
+	padding: 10px;
+	background-color: greenyellow;
+}
+
+.profile_container > div > fieldset > legend{
+	font-size: 20px;
+    color: blue;
+}
+
+.name{
+    color: grey;
+}
+    
+.content{
+    color: #003300;
+}
+
+.profile_links{
+	display: flex;
+	justify-content: space-around;
+}
+
+#edit_profile, #create_profile, #save_profile{
+	border: 1px solid green;
+	background-color: green;
+	text-decoration: none;
+	padding: 5px;
+	color: white;
+	border-radius: 5%;
+}
+
+#edit_profile:hover, #create_profile:hover, #save_profile:hover{
+	cursor: pointer;
+}
+
+.groups_container{
+	display: flex;
+}
+
+.group{
+	border: 1px solid blue;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 60px;
+	width: 150px;
+	border-radius: 60%;
+	background-color: cyan;
+	color: blue;
+	font-size: 20px;
+	margin-right: 20px;
+}
+
+.group:hover{
+	cursor: pointer;
+}
+
+.group > a{
+	text-decoration: none;
+}
+
+.group:hover{
+	box-shadow: 0 0 60px cyan;
+}
+
+.create_group_container{
+	display: flex;
+	justify-content: flex-end;
+}
+
+#create_group_icon{
+	height: 50px;
+	width: 50px;
+}
+
+.transaction{
+	border: 1px solid black;
+}
+
+.transaction_table{
+	border: 1px solid black;
 }
 
 /*rackup -s thin -E developement faye.ru*/

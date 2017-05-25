@@ -2,61 +2,45 @@
 <html>
 <head>
 	<title> Profile </title>
-  <style type="text/css">
-    .name{
-      color: grey;
-    }
-
-    legend{
-      font-size: 20px;
-      color: blue;
-    }
-
-    fieldset{
-      background-color: greenyellow;
-    }
-
-    .content{
-      color: #003300;
-    }
-  </style>
 </head>  
 <body>
-  <div style="display: flex; justify-content: space-around;">
-    <div style="display: flex; margin: 50px; align-items: center;">
-
-      <div>
+  <div class="profile_container">
         <% flag = false %>
-        <% if @person %>
-          <img src="<%= @person.avatar %>" style="height: 240px; width: 250px; margin-right: 50px; border: 1px solid grey">  
-          <% flag = true %>
-          <fieldset style="width: 700px;">
-            <legend> Personal Details </legend>
-            <span class="name"> Name: </span> <span class="content"> <%= @person.name %> </span> <br>
-            <span class="name"> username: </span> <span class="content"> <%= @person.username %> </span> <br>
-            <span class="name"> Email: </span> <span class="content"> <%= @person.email %> </span> <br>
-            <span class="name"> Gender: </span> <span class="content"> <%= @person.gender %> </span> <br>
-            <span class="name"> DOB: </span> <span class="content"> <%= @person.dob %> </span> <br>
-          </fieldset> <br>
-        <% end %>
-        <% if @contact %>
-          <% flag = true %>
-          <fieldset>
-            <legend> Contact Details </legend>
-            <span class="name"> Phone: </span> <span class="content"> <%= @contact.phone %> </span> <br>
-            <span class="name"> Address: </span> <span class="content"> <%= @contact.address %> </span> <br>
-            <span class="name"> City: </span> <span class="content"> <%= @contact.city %> </span>
-          </fieldset>
-        <% end %>
-      </div>
-    </div>
+        <div class="profile_container_image">
+          <img src="<%= current_user.avatar %>">
+        </div>
+        <div class="profile_container_content">
+          <% if @person %>
+            <% flag = true %>
+            <fieldset>
+              <legend> Personal Details </legend>
+              <span class="name"> Name: </span> <span class="content"> <%= @person.name %> </span> <br>
+              <span class="name"> Username: </span> <span class="content"> <%= @person.username %> </span> <br>
+              <span class="name"> Email: </span> <span class="content"> <%= @person.email %> </span> <br>
+              <span class="name"> Gender: </span> <span class="content"> <%= @person.gender %> </span> <br>
+              <span class="name"> DOB: </span> <span class="content"> <%= @person.dob %> </span> <br>
+            </fieldset> <br>
+          <% end %>
+          <% if @contact %>
+            <% flag = true %>
+            <fieldset>
+              <legend> Contact Details </legend>
+              <span class="name"> Phone: </span> <span class="content"> <%= @contact.phone %> </span> <br>
+              <span class="name"> Address: </span> <span class="content"> <%= @contact.address %> </span> <br>
+              <span class="name"> City: </span> <span class="content"> <%= @contact.city %> </span> <br>
+              <span class="name"> PIN: </span> <span class="content"> <%= @contact.pin %> </span>
+            </fieldset>
+          <% end %>
+        </div>
   </div>
-
-  <% if flag == true %>
-    <a href="/profile/edit"> Edit </a>
-  <% else %>
-    <a href="/profile/create"> Create Profile </a>
-  <% end %>
+  <br>
+  <div class="profile_links">
+    <% if flag == true %>
+      <a href="/profile/edit" id="edit_profile"> Edit </a>
+    <% else %>
+      <a href="/profile/create" id="create_profile"> Create Profile </a>
+    <% end %>
+  </div>
 
 </body>
 </html>

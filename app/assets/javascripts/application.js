@@ -176,8 +176,15 @@ function main(){
 			// $('.chat_window').append('<div>'+ data.message.content + ',' + data.user.email + '</div>');
   		});
 
-  // faye.publish('/messages/new', {text: 'Hi there'});
-});
+  		// faye.publish('/messages/new', {text: 'Hi there'});
+	});
+
+	var chat_window = document.getElementsByClassName("chat_window")[0];
+	if(chat_window)
+	{
+		chat_window.scrollTop = chat_window.scrollHeight
+	}
+
 }
 
 window.addEventListener("load", function(){

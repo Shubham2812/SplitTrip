@@ -7,11 +7,87 @@ class HomeController < ApplicationController
     @contact = current_user.contact
   end
 
+  def split
+    if params[:count] and params[:count] != 0
+      @status = true;
+      @count = params[:count].to_i
+    else
+      @status = false
+    end
+  end
+
+  def evaluate
+    data = Array.new
+    temp = Array.new
+    name = nil
+    params.each do |key, value| 
+      key = key.split('_')
+      if key[1] == 'name'
+        temp << value
+      elsif key[1] == 'amount'
+        temp << value.to_i
+        data << temp
+        temp = []
+      end
+    end
+    total_amount = 0
+    data.each do |i|
+      total_amount += i[1]
+    end
+    total_people = data.length
+    charge_per_head = (1.0*total_amount)/total_people
+    data.each do |i|
+      i[1] = i[1] - charge_per_head
+    end
+    
+    data = data.sort {|left, right| left[1] <=> right[1] }
+    
+    i = 0;
+    j = data.length - 1
+    temp = []
+    result = []
+    count = 0
+    while count < data.length
+      if data[i][1].abs > data[j][1].abs
+        temp << data[i][0]
+        temp << data[j][0]
+        temp << data[j][1].abs
+        result << temp
+        temp = []
+        data[i][1] = data[i][1] + data[j][1]
+        data[j][1] = 0 
+        j = j-1
+        count += 1
+      elsif data[i][1].abs < data[j][1].abs
+        temp << data[i][0]
+        temp << data[j][0]
+        temp << data[i][1].abs
+        result << temp
+        temp = []
+        data[j][1] = data[j][1] + data[i][1]
+        data[i][1] = 0
+        i = i+1
+        count += 1
+      else
+        temp << data[i][0]
+        temp << data[j][0]
+        temp << data[i][1].abs
+        result << temp
+        temp = []
+        data[j][1] = 0
+        data[i][1] = 0
+        i = i+1
+        j = j-1
+        count += 2
+      end
+    end
+    @result = result
+  end
+
   def create
   end
 
   def create_profile
-    byebug
   	person = Person.create(
   			user_id: current_user.id,
   			username: params[:username],
@@ -81,4 +157,8 @@ class HomeController < ApplicationController
   	end
   	return redirect_to '/profile'
   end
+
+  def about
+  end
+  
 end

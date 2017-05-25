@@ -1,11 +1,14 @@
 Rails.application.routes.draw do
   
   get '/' => 'home#index'
+  get '/split' => 'home#split'
+  post '/split/confirm' => 'home#evaluate'
   get '/profile' => 'home#profile'
   get '/profile/create' => 'home#create'
   post '/profile/create/confirm' => 'home#create_profile'
   get '/profile/edit' => 'home#edit'
   post '/profile/edit/confirm' => 'home#edit_profile'
+  get '/about' => 'home#about'
 
   get '/groups' => 'group#index'
   get '/groups/create' => 'group#create'

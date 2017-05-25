@@ -5,27 +5,54 @@
 </head>
 <body>
 <%= form_tag '/profile/edit/confirm', multipart: true do %>
-		Name: <%= text_field_tag :name, @person.name %> <br>
-		username: <%= text_field_tag :username, @person.username %> <br>
-		<% if @person.gender == "Male" %>
-			Gender Male <%= radio_button_tag :gender, 'Male', selected: true %> Female <%= radio_button_tag :gender, 'Female' %> <br>
-		<% else %>
-			Gender Male <%= radio_button_tag :gender, 'Male' %> Female <%= radio_button_tag :gender, 'Female', selected: true  %> <br>
-		<% end %>
-		DOB <%= date_field_tag :dob, @person.dob %> <br>
-		<% if @contact %>
-			Phone <%= text_field_tag :phone, @contact.phone %> <br>
-			Address <%= text_field_tag :address, @contact.address %> <br>
-			City <%= text_field_tag :city, @contact.city %> <br>
-			PIN <%= text_field_tag :pin, @contact.pin %> <br>
-		<% else %>
-			Phone <%= text_field_tag :phone %> <br>
-			Address <%= text_field_tag :address %> <br>
-			City <%= text_field_tag :city %> <br>
-			PIN <%= text_field_tag :pin %> <br>
-		<% end %>
-		Photo <%= file_field_tag :photo %> <br>
-		<%= submit_tag :Edit %>  
-	<% end %>
+	<div class="profile_container">
+        <% flag = false %>
+        <div class="profile_container_image"> 
+        	<img src="<%= current_user.avatar %>">
+			<Span> Photo <%= file_field_tag :photo %> </Span>
+        </div>
+        <div class="profile_container_content">
+          <% if @person %>
+            <% flag = true %>
+            <fieldset>
+              <legend> Personal Details </legend>
+              <span class="name"> Name: </span> <span class="content"> <%= text_field_tag :name, @person.name %> </span> <br>
+              <span class="name"> Username: </span> <span class="content"> <%= text_field_tag :username, @person.username %> </span> <br>
+              <span class="name"> Gender: </span> <span class="content"> 
+	              <% if @person.gender == "Male" %>
+					Male <%= radio_button_tag :gender, 'Male', selected: true %> Female <%= radio_button_tag :gender, 'Female' %>
+				  <% else %>
+					Male <%= radio_button_tag :gender, 'Male' %> Female <%= radio_button_tag :gender, 'Female', selected: true  %>
+				  <% end %> 
+			  </span> <br>
+            <span class="name"> DOB: </span> <span class="content"> <%= date_field_tag :dob, @person.dob %> </span> <br>
+            </fieldset> <br>
+          <% end %>
+          <% if @contact %>
+            <% flag = true %>
+            <fieldset>
+              <legend> Contact Details </legend>
+              <span class="name"> Phone: </span> <span class="content"> <%= text_field_tag :phone, @contact.phone %> </span> <br>
+              <span class="name"> Address: </span> <span class="content"> <%= text_field_tag :address, @contact.address %> </span> <br>
+              <span class="name"> City: </span> <span class="content"> <%= text_field_tag :city, @contact.city %> </span> <br>
+              <span class="name"> PIN: </span> <span class="content"> <%= text_field_tag :pin, @contact.pin %> </span>	
+            </fieldset>
+          <% else %>
+          	<fieldset>
+              <legend> Contact Details </legend>
+              <span class="name"> Phone: </span> <span class="content"> <%= text_field_tag :phone %> </span> <br>
+              <span class="name"> Address: </span> <span class="content"> <%= text_field_tag :address %> </span> <br>
+              <span class="name"> City: </span> <span class="content"> <%= text_field_tag :city %> </span> <br>
+              <span class="name"> PIN: </span> <span class="content"> <%= text_field_tag :pin %> </span>	
+            </fieldset>
+          <% end %>
+        </div>
+  	</div>
+  	<br>
+  	<div class="profile_links">
+		<%= submit_tag :Save, id: 'save_profile' %>  
+	</div>
+<% end %>
+
 </body>
 </html>
