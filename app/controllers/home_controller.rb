@@ -9,10 +9,85 @@ class HomeController < ApplicationController
 
   def split
     if params[:count] and params[:count] != 0
-      @status = true;
+      @status = 1;
       @count = params[:count].to_i
+    elsif params.length > 5
+      @status = 2;
+      @count = params[:number].to_i
+
+      data = Array.new
+      temp = Array.new
+      name = nil
+      params.each do |key, value| 
+        key = key.split('_')
+        if key[1] == 'name'
+          temp << value
+        elsif key[1] == 'amount'
+          temp << value.to_i
+          data << temp
+          temp = []
+        end
+      end
+      total_amount = 0
+      data.each do |i|
+        total_amount += i[1]
+      end
+      total_people = data.length
+      charge_per_head = (1.0*total_amount)/total_people
+      data.each do |i|
+        i[1] = i[1] - charge_per_head
+      end
+      
+      data = data.sort {|left, right| left[1] <=> right[1] }
+      
+      i = 0;
+      j = data.length - 1
+      temp = []
+      result = []
+      count = 0
+      while count < data.length
+        if data[i][1].abs > data[j][1].abs
+          temp << data[i][0]
+          temp << data[j][0]
+          temp << data[j][1].abs
+          if temp[0] != temp[1]
+            result << temp
+          end
+          temp = []
+          data[i][1] = data[i][1] + data[j][1]
+          data[j][1] = 0 
+          j = j-1
+          count += 1
+        elsif data[i][1].abs < data[j][1].abs
+          temp << data[i][0]
+          temp << data[j][0]
+          temp << data[i][1].abs
+          if temp[0] != temp[1]
+            result << temp
+          end
+          temp = []
+          data[j][1] = data[j][1] + data[i][1]
+          data[i][1] = 0
+          i = i+1
+          count += 1
+        else
+          temp << data[i][0]
+          temp << data[j][0]
+          temp << data[i][1].abs
+          if temp[0] != temp[1]
+            result << temp
+          end
+          temp = []
+          data[j][1] = 0
+          data[i][1] = 0
+          i = i+1
+          j = j-1
+          count += 2
+        end
+      end
+      @result = result
     else
-      @status = false
+      @status = 0
     end
   end
 
@@ -82,6 +157,7 @@ class HomeController < ApplicationController
       end
     end
     @result = result
+    return redirect_to '/split'
   end
 
   def create

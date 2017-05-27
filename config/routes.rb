@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   
   get '/' => 'home#index'
+  post '/split' => 'home#split'
   get '/split' => 'home#split'
+
   post '/split/confirm' => 'home#evaluate'
   get '/profile' => 'home#profile'
   get '/profile/create' => 'home#create'

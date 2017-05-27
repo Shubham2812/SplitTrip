@@ -87,13 +87,14 @@
 	flex-direction: column;
 	padding: 10px;
 	width: 80%;
+	background-color: #f1f1f1;	
 }
 
 .chat_window{
 	height: 450px;
-	border: 1px solid grey;
 	overflow-y: scroll;
 	padding: 10px;
+	background-color: #f1f1f1;
 }
 
 .message_container{
@@ -152,14 +153,39 @@
 }
 
 #message{
-	width: 94%;
+	width: 93%;
+	height: 25px;
+}
+
+#message_form{
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+
+.submit_container{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-top: 40px;
+}
+
+.add_participant_submit, .send_message{
+	height: 40px;
+	width: 40px;
+}
+
+#username{
+	height: 30px;
+	width: 210px;
 }
 
 .header{
 	position: fixed;
 	top: 10px;
 	left: 0;
-	height: 60px;
+	height: 70px;
 	width: 97.5%;
 	padding: 5px;
 	border: 1px solid orange;
@@ -350,4 +376,83 @@
 	border: 1px solid black;
 }
 
+.instasplit{
+	width: 80%;
+	margin: auto;
+	background-image: url('/images/insta_background.jpg');
+	background-repeat: no-repeat;
+	color: white;
+	font-size: 17px;
+	padding: 50px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-bottom: 60px;
+}
+
+.instasplit > p{
+	margin-top: 20px;
+	font-size: 16px;
+}
+
+.instaeval{
+	width: 70%;
+	margin: auto;
+	background-color: #f1b1a1;
+	padding: 40px;
+	color: brown;
+	font-size: 20px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.instaeval_form > form{
+	font-size: 16px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+#eval{
+	padding: 10px;
+	height: 40px;
+	width: 300px;
+	background-color: brown;
+	color: white;
+	border: 0px;
+	border-radius: 5%;
+	font-size: 20px;
+	margin-top: 40px;
+}
+
+#count{
+	height: 25px;
+	font-size: 18px;
+	text-align: center;
+}
+
+.amount{
+	text-align: center;
+}
+
+#count_button{
+	padding: 5px;
+	width: 100px;
+}
+
+#eval:hover{
+	box-shadow: 0px 0px 20px black;
+	cursor: pointer;
+}
+
+.result{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 80%;
+	margin: auto;
+	margin-top: 30px;
+	padding: 10px;
+}
 /*rackup -s thin -E developement faye.ru*/
