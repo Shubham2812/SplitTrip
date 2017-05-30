@@ -24,6 +24,114 @@
  	padding-top: 100px;
  }
 
+.loginOuter{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 78vh;
+}
+
+.loginContainer{
+	border: 1px solid grey;
+	width: 25%;
+	padding: 10px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 250px;
+	background-color: white;
+}
+
+#navbar-link-signup, #navbar-link-login{
+	text-decoration: none;
+	background-color: #ff5733;
+	padding: 5px;
+	border-radius: 4%;
+	margin-left: 10px;
+	color: white;
+
+}
+
+.create_group{
+	width: 40%;
+	display: flex;
+	justify-content: space-around;
+	font-size: 16px;
+	margin: auto;
+	margin-top: 100px;
+}
+
+#group_name{
+	padding: 10px;
+	font-size: 18px;
+}
+
+#create_group_button{
+	padding: 10px;
+	background-color: pink;
+	color: brown;
+	border: 1px solid brown;
+	width: 100px;
+	font-size: 18px;
+	border-radius: 5%;
+}
+
+#create_group_button:hover{
+	cursor: pointer;
+	box-shadow: 0 0 30px pink;
+}
+
+.cancel{
+	width: 50%;
+	margin: auto;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
+
+#cancel_button{
+	padding: 10px;
+	background-color: brown;
+	color: white;
+	border: 0px;
+}
+
+#cancel_button:hover{
+	cursor: pointer;
+	box-shadow: 0 0 30px brown;
+}
+
+.outerField{
+	display: flex;
+	width: 100%;
+    margin: 8px 0;
+    border: 0px solid #ccc;
+    border-bottom: 1px solid grey;
+    box-sizing: border-box;
+    padding-bottom: 5px;
+}
+
+#user_email, #user_password, #user_password_confirmation, #user_current_password{
+	border: 0px solid #ccc;
+	margin-left: 5px;
+}
+
+.actions > input{
+    width: 100%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.actions > input:hover {
+    background-color: #45a049;
+}
+
 .participants_container{
  	border: 1px solid grey;
  	padding: 10px;
@@ -176,7 +284,7 @@
 	width: 40px;
 }
 
-#username{
+#participant_username{
 	height: 30px;
 	width: 210px;
 }
@@ -302,6 +410,30 @@
     color: blue;
 }
 
+.profile_container_content > fieldset > div{	 
+	display: flex;
+	justify-content: space-between;
+	width: 50%;
+	margin-bottom: 5px;
+}
+
+#create_profile{
+	padding: 10px;
+	background-color: brown;
+	color: white;
+	border: 0px;
+	font-size: 18px;
+}
+
+#create_profile:hover{
+	cursor: pointer;
+	box-shadow: 0 0 30px green;
+}
+
+#dob{
+	color: grey;
+}
+
 .name{
     color: grey;
 }
@@ -337,8 +469,8 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	height: 60px;
-	width: 150px;
+	padding: 20px;
+	width: 250px;
 	border-radius: 60%;
 	background-color: cyan;
 	color: blue;
@@ -407,11 +539,23 @@
 	align-items: center;
 }
 
+.instaeval_form{
+	width: 90%;
+}
+
 .instaeval_form > form{
 	font-size: 16px;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+}
+
+.instaeval_form > form > div{
+	width: 80%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 15px;
 }
 
 #eval{
@@ -455,4 +599,315 @@
 	margin-top: 30px;
 	padding: 10px;
 }
+
+.team_outer{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-top: 20px;
+}
+
+.team{
+	display: flex; 
+	justify-content: space-around; 
+	width: 100%;
+}
+
+.team_container > div{
+	width: 35%; 
+	height: 300px; 
+	display: flex; 
+	justify-content: space-around; 
+	align-items: center; 
+	flex-direction: column;
+	box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
+}
+
+.team_container{
+	margin-top: 64px;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	width: 80%;	
+}
+
+.footer{
+		width: 97%;
+		background-color: #322514;
+		color: white;
+		margin-top: 50px;
+		padding: 20px;
+	}
+
+	.footer_contact{
+		width: 50%;
+	}
+
+
+	.footer_contact > div{
+		width: 60%;
+	}
+
+	.footer_contact > div > p{
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+
+	.footer_upper, .footer_lower{
+		display: flex;
+		justify-content: space-around;
+		align-items: center;
+	} 
+	.footer_time, .footer_contact{
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+
+	.footer_map > img{
+		height: 200px; 
+		width: 400px;"
+	}
+
+
+@media(max-width: 720px)
+	{
+
+		body{
+			padding: 0px;
+			padding-top: 100px;
+		}
+
+		.header{
+			width: 93%;
+		}
+
+		.container{
+			flex-direction: column;
+			align-items: center;
+			width: 95%;
+			margin: auto;
+
+		}
+
+		.header > img{
+			width: 40%;
+		}
+
+		.nav{
+			width: 60%;
+			margin-bottom: 10px;
+		}
+
+		.nav > ul{
+			width: 100%;
+			text-align: center;
+		}
+
+		.main{
+			width: 90%;
+			margin: auto;
+		}
+
+		.instasplit{
+			width: 90%;
+			padding: 20px;
+		}
+
+		.instaeval{
+			width: 90%;
+			padding: 20px;
+		}
+
+		.instaeval > form{
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+		}
+
+		.instaeval > form > span{
+			font-size: 18px;
+		}
+
+		#count_button{
+			margin-top: 10px;
+		}
+
+		.instaeval_form > form > div{
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: space-around;
+			height: 50px;
+			margin-bottom: 10px;
+			width: 100%;
+		}
+
+		.instaeval_form > form > div > div{
+			width: 100%;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+		}
+
+		.amount{
+			text-align: left;
+		}
+
+		.team{
+			flex-direction: column;
+			align-items: center;
+		}
+
+		.team_container > div{
+			width: 90%;
+			margin-bottom: 20px;
+		}
+
+		.team_container{
+			margin-top: 20px;
+			flex-direction: column;
+		}
+
+		.loginContainer{
+			width: 80%;
+		}
+
+		.groups_container{
+			flex-direction: column;
+			align-items: center;
+		}
+
+		.groups_container > div{
+			margin-bottom: 10px;
+		}
+
+		.create_group_container{
+			justify-content: center;
+			margin-bottom: 10px;
+		}
+
+		.create_group{
+			flex-direction: column;
+			width: 80%;
+			align-items: center;
+			margin-top: 30px;
+		}
+
+		.chat{
+			flex-direction: column;
+			align-items: center;
+		}
+
+		.participants_container{
+			width: 80%;
+			margin-bottom: 20px;
+		}
+
+		.chat_box{
+			border: 1px solid grey;
+			width: 100%;
+		}
+
+		.message_container{
+			width: 70%;
+		}
+
+		#message{
+			width: 85%;
+		}
+
+		.footer{
+			width: 93%;
+			margin: auto;
+			margin-top: 20px;
+			padding: 10px;
+		}
+
+		.footer_upper{
+			flex-direction: column;
+		}
+
+		.footer_contact{
+			width: 90%;
+			margin-bottom: 20px;
+		}
+
+		.footer_contact > div{
+			width: 100%;
+		}
+
+		.footer_map{
+			margin-bottom: 10px;
+		}
+
+		.footer_map > img{
+			height: 200px; 
+			width: 350px;"
+		}
+
+
+		.cancel{
+			flex-direction: column;
+			align-items: center;
+		}
+
+		.cancel > span{
+			margin-bottom: 10px;
+		}
+
+		.main{
+			width: 100%;
+		}
+
+		.profile_container{
+			flex-direction: column;
+			align-items: center;
+			width: 100%;
+			margin: auto;
+		}
+
+		.profile_container_image{
+			width: 80%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			margin-bottom: 20px;
+		}
+
+		.profile_container_image > div{
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			width: 65%;
+		}
+
+		.profile_container_content{
+			width: 90%;
+		}
+
+		.profile_container_content > fieldset > div{
+			width: 95%;
+			margin: auto;
+		}
+
+
+		/*.profile > div{
+			width: 100%;
+		}
+
+		.profile > div > fieldset{
+			width: 100%;
+		}
+
+		.profile > img{
+			margin: 0px;
+			margin-bottom: 20px;
+		}*/
+
+	}
+
+
+
 /*rackup -s thin -E developement faye.ru*/

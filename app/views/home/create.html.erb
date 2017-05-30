@@ -4,17 +4,36 @@
 	<title> Create Profile </title>
 </head>
 <body>
+
 	<%= form_tag '/profile/create/confirm', multipart: true do %>
-		Name: <%= text_field_tag :name %> <br>
-		username: <%= text_field_tag :username %> <br>
-		Gender Male <%= radio_button_tag :gender, 'Male' %> Female <%= radio_button_tag :gender, 'Female' %> <br>
-		DOB <%= date_field_tag :dob %> <br>
-		Phone <%= text_field_tag :phone %> <br>
-		Address <%= text_field_tag :address %> <br>
-		City <%= text_field_tag :city %> <br>
-		PIN <%= text_field_tag :pin %> <br>
-		Photo <%= file_field_tag :photo %> <br>
-		<%= submit_tag :Create %>  
+		<div class="profile_container">
+	        <div class="profile_container_image"> 
+	        	<img src="<%= current_user.avatar %>">
+				<Span> Photo <%= file_field_tag :photo %> </Span>
+	        </div>
+	        <div class="profile_container_content">
+	            <fieldset>
+	              <legend> Personal Details </legend>
+	              <div> <span class="name"> Name: </span> <span class="content"> <%= text_field_tag :name %> </span> </div>
+	              <div> <span class="name"> Username: </span> <span class="content"> <%= text_field_tag :username %> </span> </div>
+	              <div> <span class="name"> Gender: </span> <span class="content"> 
+						Male <%= radio_button_tag :gender, 'Male', selected: true %> Female <%= radio_button_tag :gender, 'Female' %>
+				  </span> </div>
+	            <div> <span class="name"> DOB: </span> <span class="content"> <%= date_field_tag :dob %> </span> </div>
+	            </fieldset> <br>
+	          	<fieldset>
+	              <legend> Contact Details </legend>
+	              <div> <span class="name"> Phone: </span> <span class="content"> <%= text_field_tag :phone %> </span> </div>
+	              <div> <span class="name"> Address: </span> <span class="content"> <%= text_field_tag :address %> </span> </div>
+	              <div> <span class="name"> City: </span> <span class="content"> <%= text_field_tag :city %> </span> </div>
+	              <div> <span class="name"> PIN: </span> <span class="content"> <%= text_field_tag :pin %> </span> </div>	
+	            </fieldset>
+	        </div>
+	  	</div>
+	  	<br>
+	  	<div class="profile_links">
+			<%= submit_tag :Create, id: :create_profile %>  
+		</div>
 	<% end %>
 </body>
 </html> 

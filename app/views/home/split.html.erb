@@ -22,7 +22,7 @@
 		<% end %>
 
 		<%= form_tag '/split' do %>
-			Enter the total Number of People Involved &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <%= number_field_tag :count, value %>
+			<span> Enter the total Number of People Involved </span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <%= number_field_tag :count, value %>
 			<%= submit_tag :Go, id: :count_button %>
 		<% end %>
 
@@ -38,8 +38,8 @@
 						<% name = i.to_s + '_name' %>
 						<% amount = i.to_s + '_amount' %>
 						<div> 
-							Name: <%= text_field_tag name, nil, required: :true %> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							Amount Paid: <%= number_field_tag amount, 0, class: :amount %> <br> <br>
+							<div> <span> Name: </span> <span> <%= text_field_tag name, nil, required: :true %> </span> </div>
+							<div> <span> Amount Paid: </span> <span> <%= number_field_tag amount, 0, class: :amount %> </span> </div>	
 						</div>
 						<% i = i+1 %>
 					<% end %>

@@ -4,9 +4,12 @@
 	<title> Create Group </title>
 </head>
 <body>
-	<%= form_tag '/groups/create/confirm' do %>
-		Name <%= text_field_tag :name %> <br>
-		<%= submit_tag :Create %>
-	<% end %>
+	
+		<%= form_tag '/groups/create/confirm' do %>
+			<div class="create_group">
+				<%= text_field_tag :name, nil, placeholder: 'Enter Group Title', id: :group_name %> <br>
+				<%= submit_tag :Create, id: 'create_group_button' %>
+			</div>
+		<% end %>
 </body>
 </html>

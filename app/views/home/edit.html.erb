@@ -9,41 +9,41 @@
         <% flag = false %>
         <div class="profile_container_image"> 
         	<img src="<%= current_user.avatar %>">
-			<Span> Photo <%= file_field_tag :photo %> </Span>
+			    <div> <span> Photo </span> &nbsp; <%= file_field_tag :photo %> </div>
         </div>
         <div class="profile_container_content">
           <% if @person %>
             <% flag = true %>
             <fieldset>
               <legend> Personal Details </legend>
-              <span class="name"> Name: </span> <span class="content"> <%= text_field_tag :name, @person.name %> </span> <br>
-              <span class="name"> Username: </span> <span class="content"> <%= text_field_tag :username, @person.username %> </span> <br>
-              <span class="name"> Gender: </span> <span class="content"> 
+              <div> <span class="name"> Name: </span> <span class="content"> <%= text_field_tag :name, @person.name %> </span> </div>
+              <div> <span class="name"> Username: </span> <span class="content"> <%= text_field_tag :username, @person.username %> </span> </div>
+              <div> <span class="name"> Gender: </span> <span class="content"> 
 	              <% if @person.gender == "Male" %>
 					Male <%= radio_button_tag :gender, 'Male', selected: true %> Female <%= radio_button_tag :gender, 'Female' %>
 				  <% else %>
 					Male <%= radio_button_tag :gender, 'Male' %> Female <%= radio_button_tag :gender, 'Female', selected: true  %>
 				  <% end %> 
-			  </span> <br>
-            <span class="name"> DOB: </span> <span class="content"> <%= date_field_tag :dob, @person.dob %> </span> <br>
+			  </span> </div>
+            <div> <span class="name"> DOB: </span> <span class="content"> <%= date_field_tag :dob, @person.dob %> </span> </div>
             </fieldset> <br>
           <% end %>
           <% if @contact %>
             <% flag = true %>
             <fieldset>
               <legend> Contact Details </legend>
-              <span class="name"> Phone: </span> <span class="content"> <%= text_field_tag :phone, @contact.phone %> </span> <br>
-              <span class="name"> Address: </span> <span class="content"> <%= text_field_tag :address, @contact.address %> </span> <br>
-              <span class="name"> City: </span> <span class="content"> <%= text_field_tag :city, @contact.city %> </span> <br>
-              <span class="name"> PIN: </span> <span class="content"> <%= text_field_tag :pin, @contact.pin %> </span>	
+              <div> <span class="name"> Phone: </span> <span class="content"> <%= text_field_tag :phone, @contact.phone %> </span> </div>
+              <div> <span class="name"> Address: </span> <span class="content"> <%= text_field_tag :address, @contact.address %> </span> </div>
+              <div> <span class="name"> City: </span> <span class="content"> <%= text_field_tag :city, @contact.city %> </span> </div>
+              <div> <span class="name"> PIN: </span> <span class="content"> <%= text_field_tag :pin, @contact.pin %> </span> </div>
             </fieldset>
           <% else %>
           	<fieldset>
               <legend> Contact Details </legend>
-              <span class="name"> Phone: </span> <span class="content"> <%= text_field_tag :phone %> </span> <br>
-              <span class="name"> Address: </span> <span class="content"> <%= text_field_tag :address %> </span> <br>
-              <span class="name"> City: </span> <span class="content"> <%= text_field_tag :city %> </span> <br>
-              <span class="name"> PIN: </span> <span class="content"> <%= text_field_tag :pin %> </span>	
+              <div> <span class="name"> Phone: </span> <span class="content"> <%= text_field_tag :phone %> </span> </div>
+              <div> <span class="name"> Address: </span> <span class="content"> <%= text_field_tag :address %> </span> </div>
+              <div> <span class="name"> City: </span> <span class="content"> <%= text_field_tag :city %> </span> </div>
+              <div> <span class="name"> PIN: </span> <span class="content"> <%= text_field_tag :pin %> </span> </div>	
             </fieldset>
           <% end %>
         </div>

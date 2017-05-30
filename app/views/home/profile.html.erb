@@ -14,21 +14,21 @@
             <% flag = true %>
             <fieldset>
               <legend> Personal Details </legend>
-              <span class="name"> Name: </span> <span class="content"> <%= @person.name %> </span> <br>
-              <span class="name"> Username: </span> <span class="content"> <%= @person.username %> </span> <br>
-              <span class="name"> Email: </span> <span class="content"> <%= @person.email %> </span> <br>
-              <span class="name"> Gender: </span> <span class="content"> <%= @person.gender %> </span> <br>
-              <span class="name"> DOB: </span> <span class="content"> <%= @person.dob %> </span> <br>
+              <div> <span class="name"> Name: </span> <span class="content"> <%= @person.name %> </span> </div>
+              <div> <span class="name"> Username: </span> <span class="content"> <%= @person.username %> </span> </div>
+              <div> <span class="name"> Email: </span> <span class="content"> <%= @person.email %> </span> </div>
+              <div> <span class="name"> Gender: </span> <span class="content"> <%= @person.gender %> </span> </div>
+              <div> <span class="name"> DOB: </span> <span class="content"> <%= @person.dob %> </span> </div>
             </fieldset> <br>
           <% end %>
           <% if @contact %>
             <% flag = true %>
             <fieldset>
               <legend> Contact Details </legend>
-              <span class="name"> Phone: </span> <span class="content"> <%= @contact.phone %> </span> <br>
-              <span class="name"> Address: </span> <span class="content"> <%= @contact.address %> </span> <br>
-              <span class="name"> City: </span> <span class="content"> <%= @contact.city %> </span> <br>
-              <span class="name"> PIN: </span> <span class="content"> <%= @contact.pin %> </span>
+              <div> <span class="name"> Phone: </span> <span class="content"> <%= @contact.phone %> </span> </div>
+              <div> <span class="name"> Address: </span> <span class="content"> <%= @contact.address %> </span> </div>
+              <div> <span class="name"> City: </span> <span class="content"> <%= @contact.city %> </span> </div>
+              <div> <span class="name"> PIN: </span> <span class="content"> <%= @contact.pin %> </span> </div>
             </fieldset>
           <% end %>
         </div>

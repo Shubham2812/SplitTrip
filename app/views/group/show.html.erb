@@ -23,7 +23,7 @@
 				<%= form_tag '/groups/participant/add/remote', class: 'add_participant', id: form_id, remote: true, authenticity_token: true  do %>
 					<%= hidden_field_tag :group_id, @group.id %>
 					<div class="submit_container">
-						<%= text_field_tag :username, nil, placeholder: 'Add Participant' %>
+						<%= text_field_tag :username, nil, placeholder: 'Add Participant', id: :participant_username %>
 						<%= image_submit_tag("/images/add.ico", class: :add_participant_submit) %>	
 					</div>
 				<% end %>
@@ -46,9 +46,9 @@
 		</div>
 	</div>
 	<br>
-	<div class="transaction">
-		<span> Transactions <span>
-		<%= form_tag '/transactions' do %>
+	<!-- <div class="transaction"> -->
+		<!-- <span> Transactions <span> -->
+		<% form_tag '/transactions' do %>
 			<table class="transaction_table">
 				<tr class="transaction_table_head">
 					<th> S No. </th>
