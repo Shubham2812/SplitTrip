@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170428192741) do
+ActiveRecord::Schema.define(version: 20170604132052) do
 
   create_table "contacts", force: :cascade do |t|
     t.integer  "user_id"
@@ -22,6 +22,18 @@ ActiveRecord::Schema.define(version: 20170428192741) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "debts", force: :cascade do |t|
+    t.integer  "transaction_id"
+    t.integer  "debitor_id"
+    t.integer  "creditor_id"
+    t.float    "amount"
+    t.string   "status"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "debts", ["transaction_id"], name: "index_debts_on_transaction_id"
 
   create_table "groups", force: :cascade do |t|
     t.string   "name"
@@ -43,6 +55,7 @@ ActiveRecord::Schema.define(version: 20170428192741) do
     t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "group_id"
   end
 
   add_index "messages", ["user_id"], name: "index_messages_on_user_id"
@@ -60,14 +73,15 @@ ActiveRecord::Schema.define(version: 20170428192741) do
 
   create_table "transactions", force: :cascade do |t|
     t.integer  "group_id"
-    t.integer  "debitor_id"
-    t.integer  "creditor_id"
-    t.float    "amount"
+    t.time     "start_time"
+    t.time     "end_time"
     t.string   "status"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-    t.string   "confirmed_by"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "name"
   end
+
+  add_index "transactions", ["group_id"], name: "index_transactions_on_group_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false

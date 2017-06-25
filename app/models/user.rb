@@ -30,4 +30,12 @@ class User < ActiveRecord::Base
 			'/images/male.png'
 		end
 	end
+
+	def debits
+		return Debt.where(debitor_id: id)
+	end
+
+	def credits
+		return Debt.where(creditor_id: id)
+	end
 end

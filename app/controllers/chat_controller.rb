@@ -5,14 +5,17 @@ class ChatController < ApplicationController
   end
 
   def new_message
+    group_id = params[:group_id]
   	message = current_user.messages.create(
-  			content: params[:message]
+  			content: params[:message],
+        group_id: group_id
   		)
   	respond_to do |format|
 		format.js{
 			data = Hash.new
 			data["user"] = current_user
 			data["message"] = message
+      data['group_id'] = group_id
 			message = {:channel => "/messages/new", :data => data}
 			response = RestClient.post("http://localhost:9292/faye", message.to_json, "content-type":"application/json")
 			# uri = URI.parse("http://localhost:9292/faye")

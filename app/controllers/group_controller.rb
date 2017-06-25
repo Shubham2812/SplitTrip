@@ -23,7 +23,8 @@ class GroupController < ApplicationController
   def show
   	@group = Group.find(params[:group_id])
   	@members = @group.members
-    @messages = Message.all
+    @messages = @group.messages
+    @transactions = @group.transactions
     
   end
 
@@ -79,6 +80,11 @@ class GroupController < ApplicationController
   # 	render json: data
   # end
 
+  def search
+    users = User.where("email like '%#{params[:search]}%' ") + Person.where("username like '%#{params[:search]}%' ")
+    render json: users
+  end
+
   def add_participant_remote
     person = Person.find_by(username: params[:username])
     user = User.find_by(email: params[:username])
@@ -93,21 +99,22 @@ class GroupController < ApplicationController
       @status = 0   # User NOT Found!
     end
 
-    group_user = GroupsUser.find_by(user_id: user_id, group_id: params[:group_id])
-    if group_user
-      @status = 1   # User Already Added
-    else
-      @status = 2 # Success
-      @group_user = GroupsUser.create(
-          user_id: user_id,
-          group_id: params[:group_id],
-          position: 'member'  
-        )
-      @group = Group.find(params[:group_id])
-      @group.no_of_members += 1;
-      @group.save
-    end
-      
+    if @status != 0
+      group_user = GroupsUser.find_by(user_id: user_id, group_id: params[:group_id].to_i)
+      if group_user
+        @status = 1   # User Already Added
+      else
+        @status = 2 # Success
+        @group_user = GroupsUser.create(
+            user_id: user_id,
+            group_id: params[:group_id],
+            position: 'member'  
+          )
+        @group = Group.find(params[:group_id])
+        @group.no_of_members = @group.members.length;
+        @group.save
+      end
+    end  
     respond_to do |format|
       format.js{
 
@@ -118,7 +125,7 @@ class GroupController < ApplicationController
   def remove_participant
   	group_user = GroupsUser.find(params[:groups_users_id])
   	group = Group.find(group_user.group_id)
-	  group.no_of_members -= 1;
+	  group.no_of_members = group.members.length;
 	  group.save
   	group_user.destroy
 

@@ -7,6 +7,11 @@ class HomeController < ApplicationController
     @contact = current_user.contact
   end
 
+  def passbook
+    @debits = current_user.debits
+    @credits = current_user.credits
+  end
+
   def split
     if params[:count] and params[:count] != 0
       @status = 1;

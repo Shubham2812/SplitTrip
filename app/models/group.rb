@@ -2,7 +2,8 @@ class Group < ActiveRecord::Base
 
 	has_many :groups_users
 	has_many :transactions
-
+	has_many :messages
+	
 	def members
 		groups_users = GroupsUser.where(group_id: self.id)
 		members = []

@@ -23,14 +23,14 @@
 				<%= form_tag '/groups/participant/add/remote', class: 'add_participant', id: form_id, remote: true, authenticity_token: true  do %>
 					<%= hidden_field_tag :group_id, @group.id %>
 					<div class="submit_container">
-						<%= text_field_tag :username, nil, placeholder: 'Add Participant', id: :participant_username %>
+						<%= text_field_tag :username, nil, placeholder: 'Add Participant', id: :participant_username, autocomplete: :off %>
 						<%= image_submit_tag("/images/add.ico", class: :add_participant_submit) %>	
 					</div>
 				<% end %>
 			<% end %>
-			<p id="result">
-				
-			</p>
+			<div id="search_results">
+		
+			</div>
 		</div>
 		<div class="chat_box">
 			<div class="chat_window">
@@ -40,31 +40,26 @@
 			</div>
 			<br>
 			<%= form_tag '/messages/new', remote: true, authenticity_token: true, id: :message_form do %>
+				<%= hidden_field_tag :group_id, @group.id %>
 				<%= text_field_tag :message, nil, :placeholder => 'Enter Your Message' %>
 				<%= image_submit_tag("/images/send_button.ico", class: :send_message) %>
 			<% end %>
 		</div>
 	</div>
 	<br>
-	<!-- <div class="transaction"> -->
-		<!-- <span> Transactions <span> -->
-		<% form_tag '/transactions' do %>
-			<table class="transaction_table">
-				<tr class="transaction_table_head">
-					<th> S No. </th>
-					<th> Member </th>
-					<th> Debit Amount </th>
-					<th> Credit Amount </th>
-					<th> Status </th>
-				</tr>
-				<% i = 0 %>
-				<% @members.each do |member| %>
-					<%= render 'members1', { member: member, i: i } %>
-					<% i += 1 %>
-				<% end %>
-			</table>	
-			<%= submit_tag :Submit %>
-		<% end %>
+	<div class="transaction">
+		<div class="transaction_head">
+			<span> Transactions </span>
+			<a href="/group/transaction/new/<%= @group.id %>"> <img src="/images/new_transaction.jpg"> </a>
+		</div>
+		<div class="transaction_main">
+			<% i = 0 %>
+			<% @transactions.each do |transaction| %>
+				<%= render 'transaction', transaction: transaction, i: i %>
+				<% i = i+1 %>
+			<% end %>
+			
+		</div>
 	</div>
 </body>
 </html>

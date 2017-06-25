@@ -1,0 +1,33 @@
+<% debts = transaction.debts %>
+<div class="transaction_content">
+	<div class="toggleTransaction"> 
+		<h3> <%= transaction.name %> </h3> 
+		<!-- <img src="/images/up_arrow.ico"> -->
+	</div>
+	<table class="transaction_table" id="upDownTransaction_<%= i %>">
+	<% debts.each do |debt| %>
+		<% debitor = identity debt.debitor_id %>
+		<% creditor = identity debt.creditor_id %>
+		<% if debt.status == 'pending' %>
+			<% type = :transaction_pending %>
+		<% else %>
+			<% type = :transaction_paid %>
+		<% end %>
+		<tr class="<%= type %>" >
+			<td class="td_type1"> <%= debitor %> </td> <td class="td_type2"> owes </td> <td class="td_type2"> Rs. <%= debt.amount.round(4) %>/- </td> <td class="td_type1"> to <%= creditor %> </td> <td class="td_type2"> <%= debt.status %> </td> 
+			<% if debt.creditor_id == current_user.id %>
+				<% if debt.status == 'pending' %>
+					<td class="transaction_last_child"> 
+						<%= link_to image_tag('/images/tick.png', :class => 'transaction_toggle'), '/transaction/payment/status', class: :transaction_status, id: 'debt_' + debt.id.to_s %>
+					</td>
+				<% else %>
+					<td class="transaction_last_child"> 
+						<%= link_to image_tag('/images/cross.png', :class => 'transaction_toggle'), '/transaction/payment/status', class: :transaction_status, id: 'debt_' + debt.id.to_s %>
+					</td>
+				<% end %>
+			<% end %>
+		</tr>
+	<% end %>
+	</table>
+</div>
+<br>

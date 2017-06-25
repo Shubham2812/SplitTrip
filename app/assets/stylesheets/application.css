@@ -22,6 +22,12 @@
  body{
  	padding: 10px;
  	padding-top: 100px;
+ 	background-image: url('/images/background.jpg');
+    background-size: 100% 100%;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
  }
 
 .loginOuter{
@@ -135,7 +141,7 @@
 .participants_container{
  	border: 1px solid grey;
  	padding: 10px;
- 	width: 25%;
+ 	width: 35%;
 }
 
 .participants_container_head{
@@ -286,7 +292,7 @@
 
 #participant_username{
 	height: 30px;
-	width: 210px;
+	width: 255px;
 }
 
 .header{
@@ -503,9 +509,87 @@
 .transaction{
 	border: 1px solid black;
 }
+.transaction_head{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 10px;
+}
 
-.transaction_table{
-	border: 1px solid black;
+.transaction_head > span{
+	font-size: 25px;
+}
+
+.transaction_head > a > img{
+	height: 40px;
+	width: 40px;
+}
+
+.transaction_content{
+	padding: 10px;
+	width: 70%;
+	margin: auto;
+}
+
+.transaction_pending{
+	background-color: pink;
+	color: red;
+}
+
+.transaction_paid{
+	background-color: lightgreen;
+	color: darkgreen;
+}
+
+.transaction_toggle{
+	height: 20px;
+	width: 20px;
+}
+
+/*.toggleTransaction{
+	display: flex;
+	justify-content: space-between;
+}
+
+.toggleTransaction > img{
+	height: 20px;
+	width: 20px;
+	margin-right: 24px;
+}
+
+.toggleTransaction:hover{
+	cursor: pointer;
+}*/
+
+.transaction_last_child{
+	background-color: white;
+}
+
+.td_type1{
+	width: 200px;
+}
+
+.td_type2{
+	width: 100px;
+}
+
+#search_results{
+	width: 258px;
+}
+
+#search_results > div{
+ 	border: 1px solid grey;
+ 	border-top: 0px;
+ 	border-top: 0;
+ 	width: 100%;
+ 	background-color: white;
+ 	padding: 5px;
+ 	box-sizing: border-box;
+}
+
+#search_results > div:hover{
+ 	cursor: pointer;
+ 	background-color: cyan;
 }
 
 .instasplit{
@@ -670,6 +754,186 @@
 		width: 400px;"
 	}
 
+	/*.flip-container {
+	    -webkit-perspective: 1000;
+	    -moz-perspective: 1000;
+	    -o-perspective: 1000;
+	  	perspective: 1000;
+	}*/
+
+	.flipper:hover{
+		/*-webkit-transform: rotateY(180deg);
+		-moz-transform: rotateY(180deg);
+        -o-transform: rotateY(180deg);*/
+		transform: rotateY(180deg);
+	}
+
+	.front, .back {
+		width: 100%;
+		height: 100%;
+		display: flex; 
+		justify-content: space-around; 
+		align-items: center; 
+		flex-direction: column;
+	}
+
+	.flipper {
+		-webkit-transition: 0.6s;
+		-webkit-transform-style: preserve-3d;
+
+		-moz-transition: 0.6s;
+		-moz-transform-style: preserve-3d;
+	  
+	    -o-transition: 0.6s;
+		-o-transform-style: preserve-3d;
+
+		transition: 0.6s;
+		transform-style: preserve-3d;
+		
+
+		width: 100%;
+		height: 100%;
+
+		/*position: relative;*/
+	}
+
+	.front, .back {
+		-webkit-backface-visibility: hidden;
+		-moz-backface-visibility: hidden;
+	    -o-backface-visibility: hidden;
+		backface-visibility: hidden;
+		background: #f8f8f8;
+
+		position: absolute;
+		top: 0;
+		left: 0;
+	}
+
+	/*.front {
+		z-index: -1;
+	}*/
+
+	.back {
+		-webkit-transform: rotateY(180deg);
+		-moz-transform: rotateY(180deg);
+	    -o-transform: rotateY(180deg);
+		transform: rotateY(180deg);
+	}
+
+	.front .name {
+		font-size: 2em;
+		display: inline-block;
+		background: rgba(33, 33, 33, 0.9);
+		color: #f8f8f8;
+		font-family: Courier;
+		padding: 5px 10px;
+		border-radius: 5px;
+		bottom: 60px;
+		/*left: 25%;*/
+		/*position: absolute;*/
+		text-shadow: 0.1em 0.1em 0.05em #333;
+
+		-webkit-transform: rotate(-20deg);
+		-moz-transform: rotate(-20deg);
+	    -o-transform: rotate(-20deg);
+		transform: rotate(-20deg);
+	}
+
+	.back-logo > img {
+		/*position: absolute;*/
+		/*top: 40px;*/
+		/*left: 90px;*/
+		width: 100px;
+		height: 100px;
+	}
+
+
+	.back-title {
+		font-weight: bold;
+		color: #00304a;
+		/*position: absolute;*/
+		/*top: 180px;*/
+		/*left: 0;*/
+		/*right: 0;*/
+		text-align: center;
+		text-shadow: 0.1em 0.1em 0.05em #acd7e5;
+		font-family: Courier;
+		font-size: 1.6em;
+	}
+
+	.back p {
+		/*position: absolute;*/
+		/*bottom: 40px;*/
+		/*left: 0;*/
+		/*right: 0;*/
+		text-align: center;
+		padding: 0 20px;
+	  	font-family: arial;
+	  	line-height: 2em;
+	}
+
+	.passbook_container > div{
+		display: flex;
+		flex-direction: column;
+		justify-content: space-around;
+		align-items: center;
+		padding: 30px;
+		font-size: 20px;
+	}
+
+	.passbook_debit{
+			border: 1px solid black;
+			border-left: none;
+			border-bottom: none;
+		}
+
+	.passbook_debit > thead > tr > th{
+			width: 150px;
+			height: 50px;
+			background-color: #0D90B7;
+			font-size: 22px;
+			border-left: 1px solid black;
+			border-bottom: 1px solid black;
+			color: white;
+		}
+
+	.passbook_debit > tbody > tr > td{
+			width: 150px;
+			height: 30px;
+			font-size: 18px;
+			border-left: 1px solid black;
+			border-bottom: 1px solid black;
+			color: magenta;
+			text-align: center;
+			padding: 10px;
+		}
+
+	.passbook_credit{
+			border: 1px solid black;
+			border-left: none;
+			border-bottom: none;
+		}
+
+	.passbook_credit > thead > tr > th{
+			width: 150px;
+			height: 50px;
+			background-color: #0D90B7;
+			font-size: 22px;
+			border-left: 1px solid black;
+			border-bottom: 1px solid black;
+			color: white;
+		}
+
+	.passbook_credit > tbody > tr > td{
+			width: 150px;
+			height: 30px;
+			font-size: 18px;
+			border-left: 1px solid black;
+			border-bottom: 1px solid black;
+			color: magenta;
+			text-align: center;
+			padding: 10px;
+		}
 
 @media(max-width: 720px)
 	{

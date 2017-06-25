@@ -1,11 +1,14 @@
-if('<%= @status %>' == 0)
+console.log('hello world');
+console.log('<%= @status %>');
+<% if @status == 0 %>
 	alert("User Not Found!")
-else if('<%= @status %>' == 1)
+<% elsif @status == 1 %>
 	alert("User Already Added")
-else
-{
-	$("#members_list").append("<%= escape_javascript(render 'members2', :member => @member, :@group => @group) %>");
-	console.log("hello")
+<% else %>
+	$(".members_list").append("<%= escape_javascript(render 'members2', {:member => @member, :@group => @group} ) %>");
+	$('#participant_username').val("");
+	console.log("hello");
+	console.log(".members_list");
 	console.log('<%= @group_user.id %>')
 	var members_count = document.getElementById("members_count")
 	var count = parseInt(members_count.innerHTML);
@@ -68,4 +71,4 @@ else
 					})
 				}
 	console.log("bye")
-}
+<% end %>

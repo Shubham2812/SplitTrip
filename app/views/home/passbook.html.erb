@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title> Passbook </title>
+</head>
+<body>
+	<% give = 0 %>
+	<% take = 0 %>
+	<div class="passbook_container">
+		<div>
+			<h3> The Money you Owe! </h3>
+			<table class="passbook_debit">
+				<thead>
+					<tr> 
+						<th> Amount </th>
+						<th> To </th>
+						<th> Status </th>
+						<th> Event </th>
+					</tr>
+				</thead>
+				<tbody>
+					<% @debits.each do |debit| %>
+						<% give += debit.amount %>
+						<tr>
+							<td> Rs. <%= debit.amount.round(4) %>/- </td> 
+							<td> <%= get_user_identity debit.creditor_id %> </td> 
+							<td> <%= debit.status %> </td> 
+							<td> <%= debit.xyz.name %> </td>
+						</tr>
+					<% end %>
+				</tbody>
+			</table>
+			Total: Rs. <%= give %>/-
+		</div>
+		<div>
+			<h3> The Money you Take! </h3>
+			<table class="passbook_credit">
+				<thead>
+					<tr> 
+						<th> Amount </th>
+						<th> From </th>
+						<th> Status </th>
+						<th> Event </th>
+					</tr>
+				</thead>
+				<tbody>
+					<% @credits.each do |credit| %>
+						<% take += credit.amount %>
+						<tr>
+							<td> Rs. <%= credit.amount.round(4) %> </td> 
+							<td> <%= get_user_identity credit.creditor_id %> </td> 
+							<td> <%= credit.status %> </td> 
+							<td> <%= credit.xyz.name %> </td>
+						</tr>
+					<% end %>
+				</tbody>
+			</table>
+			Total: Rs. <%= take %>/-
+		</div>	
+		<div>
+			<h3> Net Profit: Rs. <%= take - give %>/- </h3>
+		</div>
+	</div>
+
+	
+
+</body>
+</html>

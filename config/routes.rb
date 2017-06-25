@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   get '/' => 'home#index'
   post '/split' => 'home#split'
   get '/split' => 'home#split'
-
+  get '/passbook' => 'home#passbook'
   get '/profile' => 'home#profile'
   get '/profile/create' => 'home#create'
   post '/profile/create/confirm' => 'home#create_profile'
@@ -22,12 +22,21 @@ Rails.application.routes.draw do
   post '/groups/participant/remove' => 'group#remove_participant'  
   post '/groups/participant/make_admin' => 'group#make_admin_participant'
 
-  post '/transactions' => 'transaction#evaluate'
 
   get '/chat' => 'chat#index'
   post '/messages/new' => 'chat#new_message'
 
   post '/abc' => 'chat#append_message'
+
+  post '/search' => 'group#search'
+
+  get '/group/transaction/new/:group_id' => 'transaction#create'
+  post '/group/transaction/new/:group_id' => 'transaction#create'
+  
+  post 'group/transaction/evaluate' => 'transaction#evaluate'
+
+  post '/transaction/payment/status' => 'transaction#change_status'
+  
   devise_for :users
 
   # The priority is based upon order of creation: first created -> highest priority.

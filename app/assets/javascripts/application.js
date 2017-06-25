@@ -20,7 +20,6 @@ function main(){
 	// var add_participant = document.getElementsByClassName("add_participant")[0]
 	var remove_participant = document.getElementsByClassName("remove_participant")
 	var make_admin_participant = document.getElementsByClassName("make_admin_participant")
-	console.log(remove_participant)
 	
 	// if(add_participant)
 	// {	console.log("add_participant")
@@ -91,15 +90,10 @@ function main(){
 	// }
 
 	if(remove_participant.length > 0)
-	{	console.log("remove_participant")
-		for(var i=0; i<remove_participant.length; i++)
+	{	for(var i=0; i<remove_participant.length; i++)
 		{	remove_participant[i].addEventListener("click", function(event){
-				console.log("remove_participant")
 				event.preventDefault();
-				console.log(event)
-				console.log(this)
 				var members_count = document.getElementById("members_count")
-				console.log(members_count.innerHTML)
 				var count = members_count.innerHTML - 1;
 				var url = '/groups/participant/remove'
 				var info = {
@@ -154,7 +148,6 @@ function main(){
 	$(function(){
   		var faye = new Faye.Client('http://localhost:9292/faye');
   		faye.subscribe("/messages/new", function(data) {
-    		console.log(data);
     		var url = '/abc'
     		var info = {
     			user: data.user,
@@ -184,6 +177,145 @@ function main(){
 	{
 		chat_window.scrollTop = chat_window.scrollHeight
 	}
+
+	var search_form = document.getElementById('participant_username');
+	if(search_form)
+	{	search_form.addEventListener('keydown', function(){
+			var search_results = document.getElementById('search_results')
+			if(search_form.value.length > 0)
+			{
+				var url = '/search'
+				var info = {
+					search: search_form.value
+				}
+
+				search_results.style.display = 'block'
+
+				$.ajax({
+					url: url,
+					method: 'post',
+					data: info,
+					success: function(users){
+						console.log(users);
+						while (search_results.firstChild) 
+						{ search_results.removeChild(search_results.firstChild);
+						}
+
+						for(var i=0; i<users.length; i++)
+						{ var child = document.createElement('div')
+						  var identity = null
+
+						  if(users[i].username)
+						  	identity = users[i].username
+						  else
+						  	identity = users[i].email
+
+						  var text = document.createTextNode(identity)
+
+						  child.appendChild(text);
+						  search_results.appendChild(child)
+						  child.addEventListener('click', function(){
+						  	search_form.value = this.innerHTML
+						  })
+						}
+					},
+					error: function(){
+						alert("Error")
+					}
+				})
+			}
+			else
+			{
+				search_results.style.display = 'none'
+			}
+		})
+	}
+
+	// search_form.addEventListener('focus', function(){
+	// 	this.style.border = '0px';
+	// 	console.log("focussed")
+	// })
+
+	var search_results = document.getElementById('search_results')
+	if(search_results)
+	{ 
+		search_results.addEventListener('click', function(){
+			this.style.display = 'none'
+		})
+
+		document.body.addEventListener('click', function(event){
+			var search_results = document.getElementById('search_results')  
+			var x = $("#search_results").position();
+
+			if((event.clientX < x.left || event.clientX > x.left + search_results.clientWidth) || (event.clientY < x.top || event.clientY > x.top + search_results.clientHeight))
+			search_results.style.display = 'none'
+			
+		})
+	}
+
+	var transaction_status = document.getElementsByClassName('transaction_status')
+	if(transaction_status.length > 0)
+	{
+		for(var i=0; i<transaction_status.length; i++)
+		{
+			transaction_status[i].addEventListener('click', function(event){
+				console.log(event);
+				event.preventDefault();
+				var url = '/transaction/payment/status';
+				var info = {
+					debt_id: this.id.slice(5)
+				}
+				var current_element = this;
+				$.ajax({
+					url: url,
+					method: 'post',
+					data: info,
+					success: function(status){
+						if(status)
+						{	current_element.parentElement.previousElementSibling.innerHTML = 'paid'
+							current_element.firstChild.src = '/images/cross.png'
+							current_element.parentElement.parentElement.style.backgroundColor = 'lightgreen'
+							current_element.parentElement.parentElement.style.color = 'darkgreen'
+						}
+						else
+						{
+							current_element.parentElement.previousElementSibling.innerHTML = 'pending'
+							current_element.firstChild.src = '/images/tick.png'
+							current_element.parentElement.parentElement.style.backgroundColor = 'pink'
+							current_element.parentElement.parentElement.style.color = 'red'
+						}
+						
+						current_element.style.backgroundColor = 'white';
+
+
+					},
+					error: function(){
+						alert('Error');
+					}
+				})
+
+			})
+		}
+	}
+
+	// var toggleTransaction = document.getElementsByClassName("toggleTransaction")
+	// if(toggleTransaction.length > 0)
+	// {	
+	// 	for(var i=0; i<toggleTransaction.length; i++)
+	// 	{	var status = false;
+	// 		console.log($('#upDownTransaction_' + i)[0]);
+	// 		var j = i;
+	// 		toggleTransaction[i].addEventListener('click', function(){
+	// 			console.log($('#upDownTransaction_' + j)[0]);
+	// 			$('#upDownTransaction_' + j)[0].toggle(500);
+	// 			if(status)
+	// 			this.lastElementChild.src = '/images/up_arrow.ico';
+	// 			else
+	// 			this.lastElementChild.src = '/images/down_arrow.png';
+	// 			status = !status
+	// 		})
+	// 	}
+	// }
 
 }
 
