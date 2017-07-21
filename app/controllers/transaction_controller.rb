@@ -1,6 +1,7 @@
 class TransactionController < ApplicationController
 
 	def create
+		byebug
 	  @group = Group.find(params[:group_id])
 	  @members = @group.members
 
@@ -19,7 +20,7 @@ class TransactionController < ApplicationController
 	      name = nil
 	      params.each do |key, value| 
 	        key = key.split('_')
-	        if value.to_i > 0
+	        if value.to_i >= 0
 		        if key[0] == 'member'
 		          temp << Person.find_by(user_id: key[1].to_i).name + '_' + key[1]
 		          temp << value.to_i

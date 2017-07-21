@@ -2,6 +2,9 @@ class HomeController < ApplicationController
   def index
   end
 
+  def about
+  end
+
   def profile
     @person = Person.find_by(:user_id => current_user.id)
     @contact = current_user.contact

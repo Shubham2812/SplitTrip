@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   
   get '/' => 'home#index'
+  get '/about' => 'home#about'
   post '/split' => 'home#split'
   get '/split' => 'home#split'
   get '/passbook' => 'home#passbook'
@@ -35,7 +36,8 @@ Rails.application.routes.draw do
   
   post 'group/transaction/evaluate' => 'transaction#evaluate'
 
-  post '/transaction/payment/status' => 'transaction#change_status'
+  get '/transaction/payment/status/:debt_id' => 'transaction#change_status'
+  get '/transaction/payment/status' => 'transaction#change_status'
   
   devise_for :users
 

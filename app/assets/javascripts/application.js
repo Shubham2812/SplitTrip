@@ -268,7 +268,7 @@ function main(){
 				var current_element = this;
 				$.ajax({
 					url: url,
-					method: 'post',
+					method: 'get',
 					data: info,
 					success: function(status){
 						if(status)

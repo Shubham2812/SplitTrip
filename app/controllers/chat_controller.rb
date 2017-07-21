@@ -5,10 +5,9 @@ class ChatController < ApplicationController
   end
 
   def new_message
-    group_id = params[:group_id]
   	message = current_user.messages.create(
   			content: params[:message],
-        group_id: group_id
+        group_id: params[:group_id]
   		)
   	respond_to do |format|
 		format.js{

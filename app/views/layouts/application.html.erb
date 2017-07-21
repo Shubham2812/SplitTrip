@@ -39,6 +39,7 @@
   <% if user_signed_in? %>
     <div class="nav">
       <ul class="navigation">
+        <li> <a href="/"> Home </a> </li>
         <li> <a href="/about"> About </a> </li>
         <li> <a href="/split"> InstaSplit </a> </li>
         <li> <a href="/groups"> Groups </a> </li>
@@ -59,26 +60,6 @@
 
   <div class="main">
     <%= yield %>
-  </div>
-</div>
-
-<div class="footer">
-  <div class="footer_upper">
-    <div class="footer_contact">
-        <span style="font-size: 16px;"> CONTACT </span> 
-        <div>   
-            <p><img src="/images/location.png" class="fa-fw w3-xlarge w3-margin-right"> Home : 3-E, Kamla Nagar, Delhi - 110007 </p>
-            <p><img src="/images/phone.png" class="fa-fw w3-xlarge w3-margin-right"> Phone : 9711301266 </p> 
-            <p><img src="/images/mail.png" class="fa-fw w3-xlarge w3-margin-right"> Email :  shubham.aggarwal.1996@gmail.com </p>
-          </div>
-      </div>  
-    <div class="footer_map">
-      <img src="/images/map_kamla_nagar.png">
-    </div>
-  </div>
-  <hr>
-  <div class="footer_lower">
-    <span style="font-size: 12px;"> Copyright © by SplitTrip. All Rights Reserved</span>
   </div>
 </div>
 </body>

@@ -2,8 +2,18 @@
 <html>
 <head>
 	<title> Insta Split </title>
+	<style>
+	.instasplit_background{
+	 	background-image: url('/images/insta_wallpaper.jpg');
+	    background-size: 100% 100%;
+	    background-attachment: fixed;
+	    background-position: center;
+	    background-repeat: no-repeat;
+	    background-size: cover;
+ 	}
+	</style>
 </head>
-<body>
+<body class="instasplit_background">
 
 	<div class="instasplit">
 		<h1> InstaSplit </h3>
@@ -15,7 +25,7 @@
 		
 	<div class="instaeval">
 
-		<% if @status == 1 %>
+		<% if @status == 1 or @status == 2 %>
 			<% value = @count %>
 		<% else %>
 			<% value = 0 %>
